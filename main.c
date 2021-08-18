@@ -4,12 +4,12 @@ t_bool	init(t_root *root)
 {
 	int	i = -1;
 
-	root->win.widht = 500;
-	root->win.height = 500;
+	root->win.widht = 200;
+	root->win.height = 200;
 
 	root->grid.widht = root->win.widht;
 	root->grid.height = root->win.height;
-	root->grid.agent_nb = 500;
+	root->grid.agent_nb = 1000;
 	root->grid.agent_speed = 1;
 	if (!(root->grid.agent = malloc(sizeof(t_agent) * root->grid.agent_nb)))
 		return (ERROR);

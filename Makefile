@@ -6,7 +6,7 @@ NAME		= cell_simulation
 
 SRC_DIR		= .
 SRCS		= $(patsubst %, $(SRC_DIR)/%, main.c color.c key_hook.c drawing.c \
-				maths.c divers.c mouse_hook.c simulation.c)
+				maths.c divers.c mouse_hook.c simulation.c update_img.c)
 
 OBJ_DIR		= obj
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
