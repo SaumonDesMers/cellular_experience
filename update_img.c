@@ -13,7 +13,7 @@ void	decrease_color(t_img *img, t_root *root)
 		{
 			color = get_pixel(img, coord);
 			if (color != 0x00000000)
-				color -= 0x0f0f0f0f;
+				color -= 0x05050505;
 			pixel_put(img, coord, color);
 			coord.y++;
 		}

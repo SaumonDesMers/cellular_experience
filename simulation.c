@@ -19,7 +19,7 @@ int	look(t_agent *agent, t_root *root, int angle_offset)
 	t_vector2	pxl;
 	int			retval = 0;
 	int			lenght = 10;
-	int			square_size = 5;
+	int			square_size = 4;
 	float		angle = rad(agent->direction + angle_offset);
 	t_vector2	starting_pxl = (t_vector2) {.x = agent->pos.x + lenght * cos(angle) + square_size / 2 * cos(angle - M_PI_2),
 								.y = agent->pos.y + lenght * sin(angle) + square_size / 2 * sin(angle - M_PI_2)};
@@ -27,12 +27,12 @@ int	look(t_agent *agent, t_root *root, int angle_offset)
 	i = -1;
 	pxl.x = starting_pxl.x;
 	pxl.y = starting_pxl.y;
-	while (i++ < 10)
+	while (i++ < square_size)
 	{
 		j = -1;
 		pxl.x = starting_pxl.x + i * cos(angle);
 		pxl.y = starting_pxl.y + i * sin(angle);
-		while (j++ < 10)
+		while (j++ < square_size)
 		{
 			retval += get_b(get_pixel(&root->img, pxl));
 
@@ -51,11 +51,11 @@ void	new_direction(t_agent *agent, t_root *root)
 	int			front;
 	int			right;
 
-	change_direction = rand() % 101;
-	if (change_direction < 2)
-		agent->direction = rand() % 361;
-	else
-	{
+	// change_direction = rand() % 101;
+	// if (change_direction < 0)
+	// 	agent->direction = rand() % 361;
+	// else
+	// {
 		left = look(agent, root, -angle);
 		front = look(agent, root, 0);
 		right = look(agent, root, angle);
@@ -63,7 +63,7 @@ void	new_direction(t_agent *agent, t_root *root)
 			agent->direction -= angle;
 		else if (right > front && right > left)
 			agent->direction += angle;
-	}
+	// }
 }
 
 void	simulation(t_root *root)
