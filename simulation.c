@@ -51,11 +51,11 @@ void	new_direction(t_agent *agent, t_root *root)
 	int			front;
 	int			right;
 
-	// change_direction = rand() % 101;
-	// if (change_direction < 0)
-	// 	agent->direction = rand() % 361;
-	// else
-	// {
+	change_direction = rand() % 101;
+	if (change_direction < 5)
+		agent->direction = rand() % 361;
+	else
+	{
 		left = look(agent, root, -angle);
 		front = look(agent, root, 0);
 		right = look(agent, root, angle);
@@ -63,7 +63,7 @@ void	new_direction(t_agent *agent, t_root *root)
 			agent->direction -= angle;
 		else if (right > front && right > left)
 			agent->direction += angle;
-	// }
+	}
 }
 
 void	simulation(t_root *root)

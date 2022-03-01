@@ -1,4 +1,4 @@
-LIB_LINUX	= -lft -lmlx -lXext -lX11 -lm -lbsd
+LIB_LINUX	= -lm -lbsd -lX11 -lXext
 LIB_MAC		= -lft -I/usr/local/include -L/usr/local/lib -lmlx -framework OpenGL -framework AppKit
 LIB			= $(LIB_LINUX)
 
@@ -11,7 +11,7 @@ SRCS		= $(patsubst %, $(SRC_DIR)/%, main.c color.c key_hook.c drawing.c \
 OBJ_DIR		= obj
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-LIBS		= libft/libft.a
+LIBS		= libft/libft.a minilibx-linux/libmlx_Linux.a
 
 CC			= cc
 CFLAGS		= #-Wall -Wextra -Werror
@@ -20,7 +20,7 @@ RM			= rm -f
 
 $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 			@mkdir -p $(OBJ_DIR)
-			@$(CC) $(CFLAGS) -I includes -c $< -o $@
+			@$(CC) $(CFLAGS) -I minilibx-linux -c $< -o $@
 
 $(NAME):	$(OBJS)
 			@make -C libft
