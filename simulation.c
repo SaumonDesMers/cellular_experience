@@ -4,11 +4,11 @@ void	init_simulation(t_root *root)
 {
 	int	i = 0;
 
-	while (i < root->grid.agent_nb)
+	while (i < AGENT_NB)
 	{
 		root->grid.agent[i].direction = rand() % 361;
-		root->grid.agent[i].pos.x = rand() % (root->grid.widht + 1);
-		root->grid.agent[i++].pos.y = rand() % (root->grid.height + 1);
+		root->grid.agent[i].pos.x = rand() % (WIDHT + 1);
+		root->grid.agent[i++].pos.y = rand() % (HEIGHT + 1);
 	}
 }
 
@@ -52,7 +52,7 @@ void	new_direction(t_agent *agent, t_root *root)
 	int			right;
 
 	change_direction = rand() % 101;
-	if (change_direction < 5)
+	if (change_direction < 2)
 		agent->direction = rand() % 361;
 	else
 	{
@@ -72,14 +72,14 @@ void	simulation(t_root *root)
 	t_vector2	new_pos;
 	int			i = 0;
 
-	while (i < root->grid.agent_nb)
+	while (i < AGENT_NB)
 	{
 		new_direction(&root->grid.agent[i], root);
 		
 		new_pos.x = agent[i].pos.x + root->grid.agent_speed * cos(rad(agent[i].direction));
 		new_pos.y = agent[i].pos.y + root->grid.agent_speed * sin(rad(agent[i].direction));
-		if (new_pos.x < 0 || new_pos.x > root->grid.widht
-			|| new_pos.y < 0 || new_pos.y > root->grid.height)
+		if (new_pos.x < 0 || new_pos.x > WIDHT
+			|| new_pos.y < 0 || new_pos.y > HEIGHT)
 		{
 			root->grid.agent[i].direction = rand() % 361;
 			continue ;

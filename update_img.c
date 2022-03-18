@@ -6,10 +6,10 @@ void	decrease_color(t_img *img, t_root *root)
 	t_vector2	coord;
 
 	coord.x = 0;
-	while (coord.x < root->grid.widht)
+	while (coord.x < WIDHT)
 	{
 		coord.y = 0;
-		while (coord.y < root->grid.height)
+		while (coord.y < HEIGHT)
 		{
 			color = get_pixel(img, coord);
 			if (color != 0x00000000)
@@ -30,7 +30,7 @@ int	update_img(t_root *root)
 	decrease_color(&root->img, root);
 
 	i = 0;
-	while (i < root->grid.agent_nb)
+	while (i < AGENT_NB)
 		pixel_put(&root->img, root->grid.agent[i++].pos, 0xffffffff);
 
 	mlx_put_image_to_window(root->mlx, root->win.win, root->img.img, 0, 0);

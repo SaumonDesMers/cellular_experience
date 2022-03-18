@@ -1,6 +1,8 @@
 #ifndef STRUCT_H
 # define STRUCT_H
 
+# include "includes.h"
+
 typedef int	t_bool;
 
 typedef enum e_key_word
@@ -23,8 +25,6 @@ typedef struct s_vector2 {
 
 typedef struct s_mlx_win {
 	void	*win;
-	int		height;
-	int		widht;
 }				t_mlx_win;
 
 typedef struct s_img {
@@ -43,11 +43,8 @@ typedef struct s_agent {
 }				t_agent;
 
 typedef struct s_grid {
-	int		height;
-	int		widht;
-	int		agent_nb;
 	int		agent_speed;
-	t_agent	*agent;
+	t_agent	agent[AGENT_NB];
 }				t_grid;
 
 typedef struct s_root {
