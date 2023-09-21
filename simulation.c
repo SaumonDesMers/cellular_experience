@@ -21,8 +21,10 @@ int	look(t_agent *agent, t_root *root, int angle_offset)
 	int			lenght = 10;
 	int			square_size = 4;
 	float		angle = rad(agent->direction + angle_offset);
-	t_vector2	starting_pxl = (t_vector2) {.x = agent->pos.x + lenght * cos(angle) + square_size / 2 * cos(angle - M_PI_2),
-								.y = agent->pos.y + lenght * sin(angle) + square_size / 2 * sin(angle - M_PI_2)};
+	float		cos_angle = cos(angle);
+	float		sin_angle = sin(angle);
+	t_vector2	starting_pxl = (t_vector2) {.x = agent->pos.x + lenght * cos_angle + square_size / 2 * cos(angle - M_PI_2),
+								.y = agent->pos.y + lenght * sin_angle + square_size / 2 * sin(angle - M_PI_2)};
 
 	i = -1;
 	pxl.x = starting_pxl.x;
@@ -30,14 +32,14 @@ int	look(t_agent *agent, t_root *root, int angle_offset)
 	while (i++ < square_size)
 	{
 		j = -1;
-		pxl.x = starting_pxl.x + i * cos(angle);
-		pxl.y = starting_pxl.y + i * sin(angle);
+		pxl.x = starting_pxl.x + i * cos_angle;
+		pxl.y = starting_pxl.y + i * sin_angle;
 		while (j++ < square_size)
 		{
 			retval += get_b(get_pixel(&root->img, pxl));
 
-			pxl.x -= sin(angle);
-			pxl.y += cos(angle);
+			pxl.x -= sin_angle;
+			pxl.y += cos_angle;
 		}
 	}
 	return (retval);

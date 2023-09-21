@@ -10,11 +10,10 @@
 # include <time.h>
 # include <mlx.h>
 
-#define WIDHT 500
-#define HEIGHT 500
-#define AGENT_NB 5000
+#define WIDHT 1800
+#define HEIGHT 1000
+#define AGENT_NB 50000
 
-# include "libft/src/libft.h"
 # include "color.h"
 # include "struct.h"
 # include "ft_fonction.h"

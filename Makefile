@@ -11,10 +11,10 @@ SRCS		= $(patsubst %, $(SRC_DIR)/%, main.c color.c key_hook.c drawing.c \
 OBJ_DIR		= obj
 OBJS		= $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 
-LIBS		= libft/libft.a minilibx-linux/libmlx_Linux.a
+LIBS		= minilibx-linux/libmlx_Linux.a
 
 CC			= cc
-CFLAGS		= #-Wall -Wextra -Werror
+CFLAGS		= -g -Ofast #-Wall -Wextra -Werror
 AR			= ar rcs
 RM			= rm -f
 
@@ -23,7 +23,6 @@ $(OBJ_DIR)/%.o:$(SRC_DIR)/%.c
 			@$(CC) $(CFLAGS) -I minilibx-linux -c $< -o $@
 
 $(NAME):	$(OBJS)
-			@make -C libft
 			@make -C minilibx-linux
 			@$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $@ -L ./libft $(LIB)
 			@echo "Done"
@@ -31,13 +30,11 @@ $(NAME):	$(OBJS)
 all:		$(NAME)
 
 clean:
-			@make clean -C libft
 #			@make clean -C minilibx-linux
 			@$(RM) $(OBJS)
 			@echo "Remove obj"
 
 fclean:		clean
-			@make fclean -C libft
 #			@make clean -C minilibx-linux
 			@$(RM) $(NAME)
 			@echo "Remove $(NAME)"
